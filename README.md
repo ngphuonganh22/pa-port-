@@ -1,5 +1,3 @@
-# pa-port-
-my portfolio 
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -93,14 +91,14 @@ my portfolio
 
             <!-- Social Links Box -->
             <div class="pt-4 flex flex-wrap items-center gap-4">
-                <a href="https://linkedin.com/in/www.linkedin.com/in/phuong-anh-nguyen-935198340" target="_blank" rel="noopener noreferrer" 
+                <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener noreferrer" 
                    class="social-btn flex items-center space-x-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white hover:text-black group">
                     <i class="fab fa-linkedin-in text-lg group-hover:text-black"></i>
                     <span class="text-sm font-medium">LinkedIn</span>
                     <i class="fas font-thin fa-arrow-up-right-from-square text-xs opacity-50 group-hover:opacity-100"></i>
                 </a>
 
-                <a href="https://instagram.com/https://www.instagram.com/nguynpa_/" target="_blank" rel="noopener noreferrer" 
+                <a href="https://instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener noreferrer" 
                    class="social-btn flex items-center space-x-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:border-transparent group">
                     <i class="fab fa-instagram text-lg"></i>
                     <span class="text-sm font-medium">Instagram</span>
