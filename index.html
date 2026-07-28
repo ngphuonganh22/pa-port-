@@ -17,10 +17,11 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.5}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.5;overflow-x:hidden}
     body.menu-open{overflow:hidden}
     a{color:inherit;text-decoration:none}
     img{display:block;width:100%;height:100%;object-fit:cover}
+    p,li,a,span{overflow-wrap:anywhere}
     button{font:inherit;color:inherit}
     .mono,.eyebrow,.nav a,.label,.tag,.metric small{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:-.03em}
     .serif{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:500}
@@ -54,11 +55,13 @@
     .hero h1{font-size:clamp(68px,9.7vw,144px);margin:0 0 36px}
     .hero .serif{font-size:1.05em}
     .contact-lines{max-width:480px}
-    .contact-line{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);padding:17px 0;font:12px "DM Mono",monospace}
+    .contact-line{display:grid;grid-template-columns:minmax(72px,.35fr) minmax(0,1fr);align-items:center;gap:24px;border-bottom:1px solid var(--line);padding:17px 0;font:12px "DM Mono",monospace}
     .contact-line span:first-child{color:#77746d;text-transform:uppercase}
+    .contact-line span:last-child{text-align:right;word-break:break-word}
     .hero-copy{margin:24px 0 0;max-width:780px;font-size:16px}
     .hero-photo{aspect-ratio:4/5;min-height:500px}
     .hero-photo-wrap{position:relative}
+    .hero>*,.about-grid>*,.about-columns>*,.case-hero>*,.timeline-row>*,.contact-grid>*{min-width:0}
     .hero-photo-wrap .star{position:absolute;right:-32px;bottom:-28px;color:#000}
     .scroll-note{text-align:right;margin-top:18px;font:10px "DM Mono",monospace;color:#65625c}
 
@@ -93,7 +96,7 @@
     .project-tile h3{font-size:34px;letter-spacing:-.055em;margin:0 0 8px}
     .project-tile p{font-size:12px;margin:0}
 
-    .case{padding:120px 0;background:#eeece5}
+    .case{padding:clamp(76px,8vw,120px) 0;background:#eeece5}
     .case + .case{padding-top:40px}
     .case-hero{display:grid;grid-template-columns:1fr 1.25fr;align-items:stretch}
     .case-intro{padding:58px 46px;background:var(--paper)}
@@ -105,39 +108,102 @@
     .metric:last-child{border-right:0}
     .metric b{font-size:25px;color:#752414}
     .metric small{display:block;font-size:9px;margin-top:6px;color:#56534d}
-    .dashboard{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-    .dash-card{background:#fff;border-radius:20px;padding:25px;min-height:210px}
+    .dashboard{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+    .dash-card{background:#fff;border-radius:20px;padding:25px;min-width:0;min-height:210px}
     .dash-card h4{font-size:17px;margin:0 0 15px}
     .dash-card h4 span{font-family:"DM Mono",monospace;margin-right:18px}
     .dash-card p,.dash-card li{font-size:12px}
     .dash-card ul{padding-left:18px}
     .span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+    .section-label{display:block;margin:18px 0 14px;padding:5px 14px;border-radius:999px;background:#efeee8;font-size:10px;font-weight:700;text-transform:uppercase}
     .mini-gallery{display:grid;grid-template-columns:1fr;gap:16px;padding:0;background:transparent}
-    .mini-gallery .placeholder{min-height:185px;border-radius:18px}
+    .mini-gallery .placeholder{min-height:0;border-radius:18px}
+    .monochic-dashboard{
+      grid-template-columns:minmax(150px,.65fr) minmax(230px,1fr) minmax(250px,1.12fr) minmax(250px,1.12fr);
+      grid-template-rows:minmax(190px,1fr) minmax(170px,.8fr) minmax(148px,auto);
+      grid-template-areas:
+        "gallery insight analysis operation"
+        "gallery insight analysis brand"
+        "gallery paid paid outcome"
+    }
+    .monochic-dashboard .gallery-card{grid-area:gallery;grid-template-rows:repeat(4,1fr)}
+    .monochic-dashboard .insight-card{grid-area:insight}
+    .monochic-dashboard .analysis-card{grid-area:analysis}
+    .monochic-dashboard .operation-card{grid-area:operation}
+    .monochic-dashboard .brand-card{grid-area:brand}
+    .monochic-dashboard .paid-card{grid-area:paid}
+    .monochic-dashboard .outcome-card{grid-area:outcome}
+    .monochic-dashboard .dash-card{min-height:0}
     .bars{margin-top:25px}
     .bar{display:grid;grid-template-columns:90px 1fr 42px;gap:12px;align-items:center;margin:14px 0;font-size:11px}
     .bar i{height:15px;background:var(--brown);display:block}
+    .word-cloud{position:relative;min-height:190px;margin-top:8px;font-style:italic}
+    .word-cloud span{position:absolute;white-space:nowrap}
+    .word-cloud span:nth-child(1){left:14%;top:12%;font-size:15px}
+    .word-cloud span:nth-child(2){right:12%;top:28%;font-size:25px}
+    .word-cloud span:nth-child(3){left:3%;top:48%;font-size:16px}
+    .word-cloud span:nth-child(4){right:1%;top:67%;font-size:12px}
+    .word-cloud span:nth-child(5){left:20%;bottom:6%;font-size:14px}
+    .word-cloud span:nth-child(6){right:4%;bottom:0;font-size:12px}
     .donut{width:150px;aspect-ratio:1;border-radius:50%;margin:15px auto;background:conic-gradient(#716757 0 12%,#9d8d74 12% 26%,#d5cdb3 26% 52%,#eeeada 52%);position:relative}
     .donut:after{content:"";position:absolute;inset:38px;border-radius:50%;background:#fff}
+    .chart-legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:10px}
+    .chart-legend span:before{content:"";display:inline-block;width:10px;aspect-ratio:1;border-radius:50%;margin-right:6px;background:var(--swatch,#716757)}
+    .chart-label{position:absolute;font-size:10px;text-align:center;z-index:2}
+    .chart-wrap{position:relative;width:240px;max-width:100%;margin:0 auto}
+    .chart-label.jacket{left:49%;top:5%}.chart-label.dress{right:0;top:29%}.chart-label.set{right:7%;bottom:4%}.chart-label.sweater{left:0;top:46%}
     .process-list{display:grid;gap:11px}
-    .process-list div{padding:9px 12px;background:#f0efe9;border-radius:30px;font-size:11px}
+    .process-list div{display:flex;align-items:center;gap:11px;font-size:11px}
+    .process-list b{display:grid;place-items:center;flex:0 0 36px;aspect-ratio:1;border-radius:50%;background:#f0efe9;font-size:16px}
+    .brand-symbol{width:72px;height:56px;margin:18px auto;position:relative;border:3px solid #7b6a55}
+    .brand-symbol:before,.brand-symbol:after{content:"";position:absolute;background:#7b6a55}
+    .brand-symbol:before{left:31%;top:0;width:3px;height:100%;box-shadow:23px 0 #7b6a55}
+    .brand-symbol:after{left:0;top:50%;width:100%;height:3px}
     .outcome{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .outcome div{padding:13px;background:#f0efe9;border-radius:14px;font-size:12px}
+    .outcome-list{display:grid;gap:13px}
+    .outcome-list div{display:flex;align-items:center;gap:12px;font-size:11px}
+    .outcome-list b{display:grid;place-items:center;flex:0 0 34px;aspect-ratio:1;border-radius:50%;background:#f0efe9;font-size:15px}
+    .paid-platforms{display:grid;grid-template-columns:1fr 1fr;margin-top:12px}
+    .paid-platforms>div{text-align:center;padding:4px 18px;font-size:11px;font-weight:700;text-transform:uppercase}
+    .paid-platforms>div+div{border-left:1px solid #ddd9d0}
+    .paid-platforms b{display:block;font-size:38px;line-height:1.2;margin-bottom:8px}
 
     .ceramic .case-logo{color:var(--olive);font-family:"Playfair Display",serif}
     .ceramic .metric b{color:var(--olive)}
+    .ceramic-dashboard{
+      grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);
+      grid-template-areas:
+        "opportunity bmodel"
+        "gtm validation"
+        "ceramicpaid takeaways"
+    }
+    .ceramic-dashboard .opportunity-card{grid-area:opportunity}
+    .ceramic-dashboard .bmodel-card{grid-area:bmodel}
+    .ceramic-dashboard .gtm-card{grid-area:gtm}
+    .ceramic-dashboard .validation-card{grid-area:validation}
+    .ceramic-dashboard .ceramic-paid-card{grid-area:ceramicpaid}
+    .ceramic-dashboard .takeaways-card{grid-area:takeaways}
+    .ceramic-gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,2vw,28px);margin-top:42px}
+    .ceramic-gallery .placeholder{aspect-ratio:.82;border-radius:20px}
     .position-map{height:250px;position:relative;border-left:1px solid #999;border-bottom:1px solid #999;margin:25px}
     .position-map:before{content:"Premium";position:absolute;left:-12px;top:-24px;font-size:10px}
     .position-map:after{content:"Modern & Aesthetic";position:absolute;right:0;bottom:-26px;font-size:10px}
     .dot{position:absolute;width:26px;aspect-ratio:1;border-radius:50%;background:#9f9172}
     .dot.a{left:20%;top:58%}.dot.b{left:26%;top:17%}.dot.c{left:48%;top:27%}
     .dot.focus{width:72px;right:6%;top:48%;background:var(--olive);color:white;display:grid;place-items:center;font:10px "DM Mono",monospace}
+    .bmc-layout{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:14px}
     .bmc{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #aaa}
     .bmc div{min-height:110px;padding:15px;border-right:1px solid #aaa;border-bottom:1px solid #aaa;font-size:11px}
-    .phase-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:38px 0}
+    .decisions{background:#e9e6d7;border-radius:18px;padding:18px}
+    .decisions strong{display:block;margin-bottom:12px;font:600 11px "DM Mono",monospace;text-transform:uppercase}
+    .decisions span{display:block;margin:10px 0;font-size:10px}
+    .decisions span:before{content:"✓";display:inline-grid;place-items:center;width:18px;aspect-ratio:1;border-radius:50%;margin-right:7px;background:var(--olive);color:white}
+    .phase-row{display:flex;position:relative;align-items:center;justify-content:space-between;gap:10px;margin:32px 0 18px}
     .phase{width:92px;text-align:center;font-size:10px}
     .phase i{display:grid;place-items:center;width:58px;aspect-ratio:1;border-radius:50%;background:#eeece6;margin:0 auto 10px;font-style:normal;font-size:23px}
-    .phase-row:before{content:"";position:absolute;height:1px;background:#aaa}
+    .phase-row:before{content:"";position:absolute;z-index:0;left:8%;right:8%;top:29px;height:1px;background:#aaa}
+    .phase i,.phase{position:relative;z-index:1}
     .key-results{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .result{padding:20px 12px;text-align:center;background:#e9e6d7;border-radius:18px}
     .result b{display:block;font-size:25px;color:var(--olive)}
@@ -173,34 +239,67 @@
     .reveal.visible{opacity:1;transform:none}
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
 
-    @media (max-width:900px){
+    @media (max-width:1180px){
+      :root{--gutter:clamp(24px,3vw,42px)}
+      .monochic-dashboard{grid-template-columns:minmax(135px,.62fr) repeat(3,minmax(190px,1fr));gap:14px}
+      .dash-card{padding:20px}.dash-card h4{font-size:15px}
+      .bar{grid-template-columns:76px 1fr 34px;gap:8px}
+      .case-image{min-height:440px}
+      .bmc-layout{grid-template-columns:1fr}.decisions{display:grid;grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:960px){
       .nav-links{position:fixed;inset:76px 0 auto;background:var(--paper);padding:30px var(--gutter);display:none;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
       .menu-open .nav-links{display:flex}.menu-btn{display:block}
-      .hero,.about-grid,.about-columns,.case-hero,.contact-grid{grid-template-columns:1fr}
-      .hero{padding-top:45px}.hero-photo-wrap{max-width:520px;margin-inline:auto}.hero-photo{min-height:0}
-      .about-art{min-height:360px}.about-columns{gap:25px}
+      .hero{grid-template-columns:1.1fr .9fr;gap:45px;padding-top:45px}.hero h1{font-size:clamp(58px,8vw,82px)}.hero-photo{min-height:0}
+      .about-grid{grid-template-columns:.7fr 1.3fr;gap:40px}.about-columns{grid-template-columns:1fr}.about-art{min-height:520px}.about-columns{gap:25px}
+      .contact-grid{grid-template-columns:1fr}
       .timeline-head{display:none}.timeline-row{grid-template-columns:130px 1fr}.timeline-company{grid-column:2}
       .project-tiles{gap:20px}.project-tile{min-height:380px}
-      .case-intro{padding:38px 28px}.case-logo{margin-bottom:35px}.case-image{min-height:400px}
+      .case-hero{grid-template-columns:1fr 1fr}.case-intro{padding:38px 28px}.case-logo{margin-bottom:35px}.case-image{min-height:390px}
       .metrics,.pro-metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}
-      .dashboard{grid-template-columns:1fr 1fr}.dashboard>*{grid-column:auto!important}
-      .mini-gallery{grid-row:span 2}.pro-grid{grid-template-columns:1fr 1fr}.pro-grid .dash-card:last-child{grid-row:auto;grid-column:span 2}
+      .monochic-dashboard{
+        grid-template-columns:minmax(0,.72fr) minmax(0,1fr);
+        grid-template-rows:auto;
+        grid-template-areas:"gallery insight" "gallery analysis" "operation brand" "paid outcome"
+      }
+      .monochic-dashboard .gallery-card{grid-template-rows:repeat(4,minmax(150px,1fr))}
+      .ceramic-dashboard{grid-template-columns:1fr;grid-template-areas:"opportunity" "bmodel" "gtm" "validation" "ceramicpaid" "takeaways"}
+      .ceramic-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .pro-grid{grid-template-columns:1fr 1fr}.pro-grid .dash-card:last-child{grid-row:auto;grid-column:span 2}
       .skills-lower{gap:45px}.skills-lower h3{font-size:52px}
     }
-    @media (max-width:600px){
+    @media (max-width:720px){
       :root{--gutter:20px;--radius:18px}
-      .section{padding:82px 0}.hero{grid-template-columns:1fr}.hero h1{font-size:58px}
-      .hero-photo-wrap .star{right:-5px}.contact-line{font-size:10px}.hero-copy{font-size:14px}
+      .section{padding:82px 0}.hero{grid-template-columns:1fr}.hero h1{font-size:clamp(52px,15vw,72px)}
+      .hero-photo-wrap{max-width:520px;margin-inline:auto;width:100%}
+      .hero-photo-wrap .star{right:-5px}.contact-line{font-size:10px;gap:12px}.hero-copy{font-size:14px}
       h2,.about h2{font-size:50px}.eyebrow{margin-bottom:30px}
+      .about-grid,.about-columns,.case-hero{grid-template-columns:1fr}.about-art{min-height:360px}
       .education{grid-template-columns:1fr}.timeline-row{grid-template-columns:1fr;gap:12px}.timeline-company{grid-column:auto}
       .project-tiles{grid-template-columns:1fr}.project-tile{min-height:340px}
       .case{padding:80px 0}.case-image{min-height:310px}.metrics{width:calc(100% - 24px);grid-template-columns:1fr 1fr}.metric{padding:18px 16px}.metric b{font-size:20px}
-      .dashboard,.pro-grid{grid-template-columns:1fr}.pro-grid .dash-card:last-child{grid-column:auto}
-      .mini-gallery{grid-template-columns:1fr 1fr;grid-row:auto}.mini-gallery .placeholder{min-height:150px}
+      .monochic-dashboard{grid-template-columns:1fr;grid-template-areas:"gallery" "insight" "analysis" "operation" "brand" "paid" "outcome"}
+      .monochic-dashboard .gallery-card{grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,minmax(180px,1fr))}
+      .ceramic-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .pro-grid{grid-template-columns:1fr}.pro-grid .dash-card:last-child{grid-column:auto}
+      .mini-gallery .placeholder{min-height:180px}
       .outcome,.bmc,.key-results{grid-template-columns:1fr 1fr}.phase-row{overflow-x:auto;justify-content:flex-start;padding-bottom:10px}
+      .phase-row:before{display:none}.bmc-layout{grid-template-columns:1fr}.decisions{grid-template-columns:1fr 1fr}
       .pro-metrics{grid-template-columns:1fr 1fr}.pro-metrics .metric:last-child{grid-column:span 2}
       .skills-lower{grid-template-columns:1fr;gap:30px}.skills-lower h3{font-size:48px}.skill-cloud{margin-bottom:65px}.tag{font-size:10px;padding:11px 17px}
       .contact{min-height:auto}.contact h2{font-size:63px}.footer-note{gap:20px;flex-direction:column}
+    }
+    @media (max-width:460px){
+      .nav{height:68px}.brand{font-size:11px}.nav-links{inset:68px 0 auto}
+      .hero{min-height:auto;padding-block:46px}.hero h1{font-size:50px}
+      .contact-line{grid-template-columns:64px minmax(0,1fr);font-size:9px}
+      h2,.about h2{font-size:43px}.case-intro{padding:30px 22px}.case-logo{font-size:43px}
+      .metrics{margin-top:-34px}.metric{padding:16px 13px}.metric b{font-size:18px}.metric small{font-size:8px}
+      .monochic-dashboard .gallery-card{grid-template-columns:1fr;grid-template-rows:repeat(4,260px)}
+      .ceramic-gallery{grid-template-columns:1fr}
+      .outcome,.bmc,.key-results,.decisions{grid-template-columns:1fr}
+      .bmc div{min-height:auto;border-right:0}.paid-platforms{grid-template-columns:1fr}.paid-platforms>div+div{border-left:0;border-top:1px solid #ddd9d0;padding-top:16px}
+      .skills-lower h3{font-size:42px}.contact h2{font-size:52px}
     }
   </style>
 </head>
@@ -227,8 +326,8 @@
         <p class="hero-copy"><strong class="red">Marketing Management</strong> graduate passionate about understanding consumers, identifying business and market opportunities, and translating complex information into actionable marketing and communication strategies.</p>
       </div>
       <div class="hero-photo-wrap">
-        <div class="hero-photo rounded placeholder" data-fallback="pics/portrait.jpg">
-          <img src="pics/portrait.jpg" alt="Portrait of Nguyen Phuong Anh">
+        <div class="hero-photo rounded placeholder" data-fallback="pics/portrait.png">
+          <img src="pics/portrait.png" alt="Portrait of Nguyen Phuong Anh">
         </div>
         <div class="star" aria-hidden="true"></div>
         <p class="scroll-note">↓ Scroll to explore</p>
@@ -238,8 +337,8 @@
     <section id="about" class="section about page">
       <p class="eyebrow">01 / About</p>
       <div class="about-grid">
-        <div class="about-art placeholder" data-fallback="pics/about.jpg">
-          <img src="pics/about.jpg" alt="" loading="lazy">
+        <div class="about-art placeholder" data-fallback="pics/about.png">
+          <img src="pics/about.png" alt="" loading="lazy">
         </div>
         <div>
           <h2 class="reveal">Curious by nature.<br>Structured by mindset.</h2>
@@ -340,7 +439,7 @@
             <h3>D2C Brand & Marketing Strategy</h3>
             <p>Built and operated a D2C fashion brand for 4 years, combining consumer insight, brand building, creative development, and data-driven commercial decision-making across product, pricing, marketing, and operations.</p>
           </div>
-          <div class="case-image placeholder" data-fallback="pics/monochic-cover.jpg"><img src="pics/monochic-cover.jpg" alt="Monochic packaging" loading="lazy"></div>
+          <div class="case-image placeholder" data-fallback="pics/monochic-cover.png"><img src="pics/monochic-cover.png" alt="Monochic packaging" loading="lazy"></div>
         </div>
         <div class="metrics">
           <div class="metric"><b>300+</b><small>Customer surveys analyzed</small></div>
@@ -348,18 +447,34 @@
           <div class="metric"><b>10+</b><small>Supplier partnerships managed</small></div>
           <div class="metric"><b>VND 40–50M</b><small>Peak monthly revenue</small></div>
         </div>
-        <div class="dashboard">
-          <div class="mini-gallery span-3">
-            <div class="placeholder" data-fallback="pics/monochic-01.jpg"><img src="pics/monochic-01.jpg" alt="Monochic collection" loading="lazy"></div>
-            <div class="placeholder" data-fallback="pics/monochic-02.jpg"><img src="pics/monochic-02.jpg" alt="Monochic collection" loading="lazy"></div>
-            <div class="placeholder" data-fallback="pics/monochic-03.jpg"><img src="pics/monochic-03.jpg" alt="Monochic collection" loading="lazy"></div>
+        <div class="dashboard monochic-dashboard">
+          <div class="mini-gallery gallery-card">
+            <div class="placeholder" data-fallback="pics/monochic-01.png"><img src="pics/monochic-01.png" alt="Monochic collection" loading="lazy"></div>
+            <div class="placeholder" data-fallback="pics/monochic-02.png"><img src="pics/monochic-02.png" alt="Monochic collection" loading="lazy"></div>
+            <div class="placeholder" data-fallback="pics/monochic-03.png"><img src="pics/monochic-03.png" alt="Monochic collection" loading="lazy"></div>
+            <div class="placeholder" data-fallback="pics/monochic-04.png"><img src="pics/monochic-04.png" alt="Monochic packaging" loading="lazy"></div>
           </div>
-          <div class="dash-card span-4"><h4><span>01</span>Customer Insights</h4><p>Collected and analyzed 300+ customer surveys to understand preferences, pain points and product opportunities.</p><div class="bars"><div class="bar"><span>Fabric quality</span><i style="width:82%"></i><b>82%</b></div><div class="bar"><span>Design / Style</span><i style="width:76%"></i><b>76%</b></div><div class="bar"><span>Fit</span><i style="width:64%"></i><b>64%</b></div><div class="bar"><span>Price</span><i style="width:52%"></i><b>52%</b></div></div></div>
-          <div class="dash-card span-5"><h4><span>02</span>Product & Commercial Analysis</h4><p>Evaluated 100+ product variants and analyzed sales performance to optimize product portfolio, pricing and inventory decisions.</p><div class="donut"></div><p><strong>Sales:</strong> Sweater 48% · Set 26% · Dress 14% · Jacket 12%</p></div>
-          <div class="dash-card span-5"><h4><span>03</span>Operation & Execution</h4><div class="process-list"><div>Sourcing & Supplier Management</div><div>Inventory Management</div><div>Product & Price Testing</div><div>Fulfillment</div><div>Customer Service</div></div></div>
-          <div class="dash-card span-4"><h4><span>04</span>Brand & Business Model Development</h4><p>Developed the Business Model Canvas and brand guidelines, aligning the value proposition, visual direction and communications with the target customer profile.</p></div>
-          <div class="dash-card span-7"><h4><span>05</span>Paid Media & Commercial Testing</h4><p>Developed a digital launch strategy across Instagram and TikTok, combining organic content and paid advertising to test product-market response.</p><div class="icon-row"><div><b>◎</b>Instagram</div><div><b>♪</b>TikTok</div></div></div>
-          <div class="dash-card span-5"><h4>Outcome</h4><div class="outcome"><div>Data-driven product and pricing decisions</div><div>Peak monthly revenue of VND 40–50M</div><div>High repeat purchase rate</div><div>Consistent customer experience</div></div></div>
+          <div class="dash-card insight-card">
+            <h4><span>01</span>Customer Insights</h4>
+            <p>Collected and analyzed 300+ customer surveys from social media, Google Forms and direct conversations to understand preferences, pain points and product opportunities.</p>
+            <strong class="section-label">Top Customer Preferences</strong>
+            <div class="bars"><div class="bar"><span>Fabric quality</span><i style="width:82%"></i><b>82%</b></div><div class="bar"><span>Design / Style</span><i style="width:76%"></i><b>76%</b></div><div class="bar"><span>Fit</span><i style="width:64%"></i><b>64%</b></div><div class="bar"><span>Price</span><i style="width:52%"></i><b>52%</b></div></div>
+            <strong class="section-label">What Customers Care About</strong>
+            <div class="word-cloud" aria-label="Quality, versatile, good service, reasonable price, fast delivery, well-packaged"><span>quality</span><span>versatile</span><span>good service</span><span>reasonable price</span><span>fast delivery</span><span>well-packaged</span></div>
+          </div>
+          <div class="dash-card analysis-card">
+            <h4><span>02</span>Product & Commercial Analysis</h4>
+            <p>Evaluated 100+ product variants and analyzed sales performance to optimize product portfolio, pricing and inventory decisions.</p>
+            <strong class="section-label">Sales Performance by Category</strong>
+            <div class="chart-legend"><span style="--swatch:#716757">Jacket</span><span style="--swatch:#9d8d74">Dress</span><span style="--swatch:#d5cdb3">Set</span><span style="--swatch:#eeeada">Sweater</span></div>
+            <div class="chart-wrap"><div class="donut"></div><span class="chart-label jacket">Jacket<br>12%</span><span class="chart-label dress">Dress<br>14%</span><span class="chart-label set">Set<br>26%</span><span class="chart-label sweater">Sweater<br>48%</span></div>
+            <strong class="section-label">Key Takeaways</strong>
+            <ul><li>Sweaters are the best-performing category.</li><li>Neutral colors and minimal designs have the highest repeat purchase rate.</li><li>Raise prices on best-selling products and increase jacket promotions.</li></ul>
+          </div>
+          <div class="dash-card operation-card"><h4><span>03</span>Operation & Execution</h4><p>Built SOPs across key processes and managed end-to-end operations to ensure consistent product quality and customer experience.</p><strong class="section-label">Key Process</strong><div class="process-list"><div><b>◇</b>Sourcing & Supplier Management</div><div><b>▦</b>Inventory Management</div><div><b>⚙</b>Product & Price Testing</div><div><b>▰</b>Fulfillment</div><div><b>◉</b>Customer Service</div></div></div>
+          <div class="dash-card brand-card"><h4><span>04</span>Brand & Business Model Development</h4><div class="brand-symbol" aria-hidden="true"></div><p>Developed the Business Model Canvas and built the venture’s brand identity and brand guidelines, aligning the value proposition, visual direction, and communications with the target customer profile.</p></div>
+          <div class="dash-card paid-card"><h4><span>05</span>Paid Media & Commercial Testing</h4><p>Developed a digital launch strategy across Instagram and TikTok, combining organic content and paid advertising to test product-market response and drive product discovery and conversion.</p><div class="paid-platforms"><div><b>◎</b>Instagram</div><div><b>♪</b>TikTok</div></div></div>
+          <div class="dash-card outcome-card"><h4>Outcome</h4><div class="outcome-list"><div><b>♙</b>Data-driven decisions improved product selection, pricing and inventory management.</div><div><b>◉</b>Achieved peak monthly revenue of VND 40–50M.</div><div><b>♥</b>Built a loyal customer base with high repeat purchase rate.</div></div></div>
         </div>
       </div>
     </section>
@@ -373,7 +488,7 @@
             <h3>Venture Strategy & Commercialization</h3>
             <p>A hands-on startup venture, where I transformed a ceramic product concept into a market-tested business by combining market research, business model design, and digital commercialization.</p>
           </div>
-          <div class="case-image placeholder" data-fallback="pics/goigem-brand.jpg"><img src="pics/goigem-brand.jpg" alt="Gói Gém brand identity" loading="lazy"></div>
+          <div class="case-image placeholder" data-fallback="pics/goigem-brand.png"><img src="pics/goigem-brand.png" alt="Gói Gém brand identity" loading="lazy"></div>
         </div>
         <div class="metrics">
           <div class="metric"><b>20+</b><small>Competitors analyzed</small></div>
@@ -381,20 +496,20 @@
           <div class="metric"><b>3 Months</b><small>Digital launch</small></div>
           <div class="metric"><b>2.5×</b><small>Revenue / Initial investment</small></div>
         </div>
-        <div class="dashboard">
-          <div class="dash-card span-5"><h4><span>01</span>Opportunity Identification</h4><ul><li>Conducted industry and competitor analysis.</li><li>Evaluated customer pain points and purchasing motivations.</li><li>Identified an opportunity for affordable handcrafted ceramics targeting Gen Z.</li></ul><div class="position-map"><i class="dot a"></i><i class="dot b"></i><i class="dot c"></i><i class="dot focus">Gói Gém</i></div></div>
-          <div class="dash-card span-7"><h4><span>02</span>Business Model Canvas (Key Elements)</h4><div class="bmc"><div><strong>Customer Segment</strong><br>Gen Z (18–30), lifestyle consumers, gift buyers</div><div><strong>Value Proposition</strong><br>Handcrafted ceramics with aesthetic and emotional value</div><div><strong>Channels</strong><br>Instagram, TikTok</div><div><strong>Revenue Streams</strong><br>Product sales</div><div><strong>Cost Structure</strong><br>Products, packaging, marketing, shipping</div><div><strong>Key Partners</strong><br>Ceramic workshops and packaging partners</div></div></div>
-          <div class="dash-card span-5"><h4><span>03</span>Go-to-Market Strategy</h4><p>Developed a 3-phase strategy using keyword research to inform content calendars, channel planning and KPIs.</p><div class="phase-row"><div class="phase"><i>◎</i>Reach</div><div class="phase"><i>↻</i>Convert</div><div class="phase"><i>♥</i>Engage</div></div></div>
-          <div class="dash-card span-7"><h4><span>04</span>Commercial Validation</h4><div class="phase-row"><div class="phase"><i>⌕</i>Research</div><div class="phase"><i>▦</i>Model</div><div class="phase"><i>□</i>Product</div><div class="phase"><i>↗</i>Launch</div><div class="phase"><i>★</i>Validate</div></div><div class="key-results"><div class="result"><b>2.5×</b><small>Revenue</small></div><div class="result"><b>15+</b><small>Products</small></div><div class="result"><b>2</b><small>Channels</small></div><div class="result"><b>High</b><small>Satisfaction</small></div></div></div>
-          <div class="dash-card span-5"><h4><span>05</span>Paid Media & Commercial Testing</h4><div class="icon-row"><div><b>◎</b>Instagram<br><small>Brand storytelling and education</small></div><div><b>♪</b>TikTok<br><small>Discovery and product demos</small></div></div></div>
-          <div class="dash-card span-7"><h4><span>06</span>Strategic Takeaways</h4><div class="outcome"><div>Consumers valued storytelling and packaging.</div><div>Small-batch sourcing reduced inventory risk.</div><div>Instagram built awareness; TikTok drove discovery.</div><div>Validation confirmed Gen Z demand.</div></div></div>
-          <div class="mini-gallery span-12" style="grid-template-columns:repeat(5,1fr)">
-            <div class="placeholder" data-fallback="pics/goigem-01.jpg"><img src="pics/goigem-01.jpg" alt="Gói Gém social content" loading="lazy"></div>
-            <div class="placeholder" data-fallback="pics/goigem-02.jpg"><img src="pics/goigem-02.jpg" alt="Gói Gém social content" loading="lazy"></div>
-            <div class="placeholder" data-fallback="pics/goigem-03.jpg"><img src="pics/goigem-03.jpg" alt="Gói Gém social content" loading="lazy"></div>
-            <div class="placeholder" data-fallback="pics/goigem-04.jpg"><img src="pics/goigem-04.jpg" alt="Gói Gém social content" loading="lazy"></div>
-            <div class="placeholder" data-fallback="pics/goigem-05.jpg"><img src="pics/goigem-05.jpg" alt="Gói Gém social content" loading="lazy"></div>
-          </div>
+        <div class="dashboard ceramic-dashboard">
+          <div class="dash-card opportunity-card"><h4><span>01</span>Opportunity Identification</h4><ul><li>Conducted industry and competitor analysis to assess demand in the handcrafted ceramics market.</li><li>Evaluated customer pain points and purchasing motivations.</li><li>Identified an opportunity for affordable handcrafted ceramics targeting Gen Z consumers.</li></ul><strong class="section-label">Competitor Positioning Map</strong><div class="position-map"><i class="dot a"></i><i class="dot b"></i><i class="dot c"></i><i class="dot focus">Gói Gém</i></div></div>
+          <div class="dash-card bmodel-card"><h4><span>02</span>Business Model Canvas (Key Elements)</h4><div class="bmc-layout"><div class="bmc"><div><strong>Customer Segment</strong><br>Gen Z (18–30), lifestyle consumers, gift buyers</div><div><strong>Value Proposition</strong><br>Handcrafted ceramics with aesthetic and emotional value</div><div><strong>Channels</strong><br>Instagram, TikTok</div><div><strong>Revenue Streams</strong><br>Product sales</div><div><strong>Cost Structure</strong><br>Products, packaging, marketing, shipping</div><div><strong>Key Partners</strong><br>Ceramic workshops and packaging partners</div></div><aside class="decisions"><strong>Strategic Decisions</strong><span>Accessible pricing strategy</span><span>Instagram-first acquisition</span><span>Small-batch inventory to minimize risk</span><span>Gift-oriented packaging</span></aside></div></div>
+          <div class="dash-card gtm-card"><h4><span>03</span>Go-to-Market Strategy</h4><p>Developed a 3-phase strategy using keyword research to inform content calendars, channel planning and KPIs.</p><div class="phase-row"><div class="phase"><i>◎</i>Reach</div><div class="phase"><i>↻</i>Convert</div><div class="phase"><i>♥</i>Engage</div></div></div>
+          <div class="dash-card validation-card"><h4><span>04</span>Commercial Validation</h4><div class="phase-row"><div class="phase"><i>⌕</i>Research</div><div class="phase"><i>▦</i>Model</div><div class="phase"><i>□</i>Product</div><div class="phase"><i>↗</i>Launch</div><div class="phase"><i>★</i>Validate</div></div><strong class="section-label">Key Results</strong><div class="key-results"><div class="result"><b>2.5×</b><small>Revenue</small></div><div class="result"><b>15+</b><small>Products</small></div><div class="result"><b>2</b><small>Channels</small></div><div class="result"><b>High</b><small>Satisfaction</small></div></div></div>
+          <div class="dash-card ceramic-paid-card"><h4><span>05</span>Paid Media & Commercial Testing</h4><p>Developed a digital launch strategy across Instagram and TikTok, combining organic content and paid advertising to test product-market response.</p><div class="paid-platforms"><div><b>◎</b>Instagram<br><small>Brand storytelling and education</small></div><div><b>♪</b>TikTok<br><small>Discovery and product demos</small></div></div></div>
+          <div class="dash-card takeaways-card"><h4><span>06</span>Strategic Takeaways</h4><div class="outcome-list"><div><b>♥</b>Consumers valued storytelling and packaging as much as functionality.</div><div><b>□</b>Small-batch sourcing reduced inventory risk and improved flexibility.</div><div><b>▯</b>Instagram built awareness; TikTok drove stronger discovery.</div><div><b>♙</b>Validation confirmed demand among young consumers.</div></div></div>
+        </div>
+        <div class="ceramic-gallery" aria-label="Gói Gém campaign gallery">
+          <div class="placeholder" data-fallback="pics/goigem-01.png"><img src="pics/goigem-01.png" alt="Gói Gém social campaign artwork" loading="lazy"></div>
+          <div class="placeholder" data-fallback="pics/goigem-02.png"><img src="pics/goigem-02.png" alt="Gói Gém social campaign artwork" loading="lazy"></div>
+          <div class="placeholder" data-fallback="pics/goigem-03.png"><img src="pics/goigem-03.png" alt="Gói Gém social campaign artwork" loading="lazy"></div>
+          <div class="placeholder" data-fallback="pics/goigem-04.png"><img src="pics/goigem-04.png" alt="Gói Gém social campaign artwork" loading="lazy"></div>
+          <div class="placeholder" data-fallback="pics/goigem-05.png"><img src="pics/goigem-05.png" alt="Gói Gém social campaign artwork" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -472,7 +587,11 @@
     }));
     document.querySelectorAll('.placeholder img').forEach(img=>{
       const ready=()=>img.parentElement.classList.add('has-image');
-      if(img.complete&&img.naturalWidth)ready();
+      if(img.complete){
+        if(img.naturalWidth)ready();
+        else img.remove();
+        return;
+      }
       img.addEventListener('load',ready);
       img.addEventListener('error',()=>img.remove());
     });
@@ -480,6 +599,11 @@
       if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
     }),{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    if(location.hash){
+      document.fonts.ready.then(()=>{
+        requestAnimationFrame(()=>document.querySelector(location.hash)?.scrollIntoView({block:'start'}));
+      });
+    }
   </script>
 </body>
 </html>
