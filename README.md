@@ -2,7 +2,7 @@
 
 Chào mừng bạn đến với Repository lưu trữ mã nguồn Website Portfolio cá nhân của Nguyễn Phương Anh.
 
-🌐 **Xem trang web trực tuyến tại:** https://ngphuonganh22.github.io/pa-portfolio/
+🌐 **Xem trang web trực tuyến tại:** https://ngphuonganh22.github.io/paport/
 
 ## Giới thiệu
 - **Lĩnh vực:** Founder & Communications Executive
